@@ -52,7 +52,7 @@ public class DispatcherServlet extends ViewBaseServlet{
 
         String operate = request.getParameter("operate");
         if(StringUtil.isEmpty(operate)){
-            operate = "index" ;
+            operate = "login";
         }
 
         try {

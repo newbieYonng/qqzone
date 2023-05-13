@@ -19,7 +19,7 @@ public class TopicDAOImpl extends BaseDAO<Topic> implements TopicDAO {
                 "insert into t_topic values(?, ?, ?, ?, ?)",
                 topic.getId(),
                 topic.getTitle(),
-                topic.getReplyList(),
+                topic.getContent(),
                 topic.getTopicDate(),
                 topic.getAuthor()
         );
