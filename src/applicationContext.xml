@@ -14,6 +14,7 @@
 <beans>
     <bean id="userBasicDAO" class="com.guigu.qqzone.dao.Impl.UserBasicDAOImpl"/>
     <bean id="topicDAO" class="com.guigu.qqzone.dao.Impl.TopicDAOImpl"/>
+    <bean id="page" class="com.guigu.myssm.myspringmvc.PageController"/>
 
     <bean id="userBasicService" class="com.guigu.qqzone.service.Impl.UserBasicServiceImpl">
         <property name="userBasicDAO" ref="userBasicDAO"/>
