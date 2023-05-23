@@ -14,6 +14,16 @@
 <beans>
     <bean id="userBasicDAO" class="com.guigu.qqzone.dao.Impl.UserBasicDAOImpl"/>
     <bean id="topicDAO" class="com.guigu.qqzone.dao.Impl.TopicDAOImpl"/>
+    <bean id="replyDAO" class="com.guigu.qqzone.dao.Impl.ReplyDAOImpl"/>
+    <bean id="hostReplyDAO" class="com.guigu.qqzone.dao.Impl.HostReplyDAOImpl"/>
+    <bean id="hostReplyService" class="com.guigu.qqzone.service.Impl.HostReplyServiceImpl">
+        <property name="hostReplyDAO" ref="hostReplyDAO"/>
+    </bean>
+    <bean id="replyService" class="com.guigu.qqzone.service.Impl.ReplyServiceImpl">
+        <property name="replyDAO" ref="replyDAO"/>
+        <property name="userBasicService" ref="userBasicService"/>
+        <property name="hostReplyService" ref="hostReplyService"/>
+    </bean>
     <bean id="page" class="com.guigu.myssm.myspringmvc.PageController"/>
 
     <bean id="userBasicService" class="com.guigu.qqzone.service.Impl.UserBasicServiceImpl">
@@ -21,9 +31,15 @@
     </bean>
     <bean id="topicService" class="com.guigu.qqzone.service.Impl.TopicServiceImpl">
         <property name="topicDAO" ref="topicDAO"/>
+        <property name="userBasicService" ref="userBasicService"/>
+        <property name="replyService" ref="replyService"/>
     </bean>
+
     <bean id="user" class="com.guigu.qqzone.controller.UserController">
         <property name="userBasicService" ref="userBasicService"/>
+        <property name="topicService" ref="topicService"/>
+    </bean>
+    <bean id="topic" class="com.guigu.qqzone.controller.TopicController">
         <property name="topicService" ref="topicService"/>
     </bean>
 </beans>

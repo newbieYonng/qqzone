@@ -9,4 +9,6 @@ public interface TopicService {
 
     //查询特定用户的日志列表
     List<Topic> getTopicList(UserBasic userBasic);
+    //根据id查询topic
+    Topic getTopicById(Integer id);
 }
