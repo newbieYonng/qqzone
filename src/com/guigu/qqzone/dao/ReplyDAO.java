@@ -8,4 +8,5 @@ public interface ReplyDAO {
 
     List<Reply> getReplyListByTopicId(Integer id);
 
+    void addReply(Reply reply);
 }
