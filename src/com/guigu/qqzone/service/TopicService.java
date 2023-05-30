@@ -11,4 +11,6 @@ public interface TopicService {
     List<Topic> getTopicList(UserBasic userBasic);
     //根据id查询topic
     Topic getTopicById(Integer id);
+
+    void delTopic(Integer topicId);
 }

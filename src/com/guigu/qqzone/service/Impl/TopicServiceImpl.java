@@ -37,4 +37,13 @@ public class TopicServiceImpl implements TopicService {
 
         return topic;
     }
+
+    @Override
+    public void delTopic(Integer topicId) {
+        Topic topic = topicDAO.getTopic(topicId);
+        if (topic != null) {
+            replyService.delReplyList(topic);
+            topicDAO.delteTopic(topic);
+        }
+    }
 }

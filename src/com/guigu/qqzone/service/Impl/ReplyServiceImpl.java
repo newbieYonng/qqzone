@@ -3,6 +3,7 @@ package com.guigu.qqzone.service.Impl;
 import com.guigu.qqzone.dao.ReplyDAO;
 import com.guigu.qqzone.pojo.HostReply;
 import com.guigu.qqzone.pojo.Reply;
+import com.guigu.qqzone.pojo.Topic;
 import com.guigu.qqzone.pojo.UserBasic;
 import com.guigu.qqzone.service.HostReplyService;
 import com.guigu.qqzone.service.ReplyService;
@@ -38,4 +39,27 @@ public class ReplyServiceImpl implements ReplyService {
     public void addReply(Reply reply) {
         replyDAO.addReply(reply);
     }
+
+    @Override
+    public void delReply(Integer id) {
+        Reply reply = replyDAO.getReply(id);
+        if (reply != null) {
+            //如有主人回复，先删除
+            HostReply hostReply = hostReplyService.getHostReplyByReplyId(reply.getId());
+            if (hostReply != null)
+                hostReplyService.delHostReply(hostReply.getId());
+            replyDAO.delReply(id);
+        }
+    }
+
+    @Override
+    public void delReplyList(Topic topic) {
+        List<Reply> replyList = replyDAO.getReplyListByTopicId(topic.getId());
+        if (replyList != null) {
+            for (Reply reply : replyList) {
+                delReply(reply.getId());
+            }
+        }
+    }
+
 }
